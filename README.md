@@ -127,11 +127,11 @@ starwars %>%
 #> # A tibble: 9 x 3
 #>   species      n  mass
 #>   <chr>    <int> <dbl>
-#> 1 <NA>         5  48  
-#> 2 Droid        5  69.8
-#> 3 Gungan       3  74  
-#> 4 Human       35  82.8
-#> 5 Kaminoan     2  88  
+#> 1 Droid        5  69.8
+#> 2 Gungan       3  74  
+#> 3 Human       35  82.8
+#> 4 Kaminoan     2  88  
+#> 5 Mirialan     2  53.1
 #> # ... with 4 more rows
 ```
 
