@@ -77,7 +77,7 @@ select() to make it easy to move blocks of columns at once." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -94,7 +94,7 @@ select() to make it easy to move blocks of columns at once." />
         <a class="navbar-brand" href="../index.html">dplyr</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.99.9000</span>
+          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.99.9002</span>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@ dplyr (<code>data.frame</code>)
 #&gt;   d     e     f         a     b     c
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> a     a     a         1     1     1</div><div class='input'><span class='co'># Or with any other select helper</span>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate</span>(<span class='fu'>any_of</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"e"</span>, <span class='st'>"i"</span>, <span class='st'>"o"</span>, <span class='st'>"u"</span>)))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate</span>(<span class='fu'><a href='https://tidyselect.r-lib.org/reference/select_helpers.html'>any_of</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"e"</span>, <span class='st'>"i"</span>, <span class='st'>"o"</span>, <span class='st'>"u"</span>)))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
 #&gt;       a e         b     c d     f    
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     1 a         1     1 a     a    </div><div class='input'>
@@ -279,14 +279,9 @@ dplyr (<code>data.frame</code>)
 #&gt; </span><span style='color: #555555;'>1</span><span>     1     1 a     a    </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#methods">Methods</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

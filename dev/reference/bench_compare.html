@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Efficiently count the number of unique values in a set of vector — n_distinct • dplyr</title>
+<title>Evaluate, compare, benchmark operations of a set of srcs. — bench_compare • dplyr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Efficiently count the number of unique values in a set of vector — n_distinct" />
-<meta property="og:description" content="This is a faster and more concise equivalent of length(unique(x))" />
+<meta property="og:title" content="Evaluate, compare, benchmark operations of a set of srcs. — bench_compare" />
+<meta property="og:description" content="
+
+These functions are deprecated because we now believe that you're
+better of performing the comparisons directly, yourself, in order to
+generate more informative test failures." />
 <meta property="og:image" content="https://dplyr.tidyverse.org/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -185,34 +189,72 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Efficiently count the number of unique values in a set of vector</h1>
-    <small class="dont-index">Source: <a href='https://github.com/tidyverse/dplyr/blob/master/R/distinct.R'><code>R/distinct.R</code></a></small>
-    <div class="hidden name"><code>n_distinct.Rd</code></div>
+    <h1>Evaluate, compare, benchmark operations of a set of srcs.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/tidyverse/dplyr/blob/master/R/deprec-bench-compare.r'><code>R/deprec-bench-compare.r</code></a></small>
+    <div class="hidden name"><code>bench_compare.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a faster and more concise equivalent of <code><a href='https://rdrr.io/r/base/length.html'>length(unique(x))</a></code></p>
+    <p><img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' />
+
+These functions are deprecated because we now believe that you're
+better of performing the comparisons directly, yourself, in order to
+generate more informative test failures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>n_distinct</span>(<span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>bench_tbls</span>(<span class='no'>tbls</span>, <span class='no'>op</span>, <span class='no'>...</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+
+<span class='fu'>compare_tbls</span>(<span class='no'>tbls</span>, <span class='no'>op</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compare</span> <span class='kw'>=</span> <span class='no'>equal_data_frame</span>, <span class='no'>...</span>)
+
+<span class='fu'>compare_tbls2</span>(<span class='no'>tbls_x</span>, <span class='no'>tbls_y</span>, <span class='no'>op</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compare</span> <span class='kw'>=</span> <span class='no'>equal_data_frame</span>, <span class='no'>...</span>)
+
+<span class='fu'>eval_tbls</span>(<span class='no'>tbls</span>, <span class='no'>op</span>)
+
+<span class='fu'>eval_tbls2</span>(<span class='no'>tbls_x</span>, <span class='no'>tbls_y</span>, <span class='no'>op</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>vectors of values</p></td>
+      <th>tbls, tbls_x, tbls_y</th>
+      <td><p>A list of <code><a href='tbl.html'>tbl()</a></code>s.</p></td>
     </tr>
     <tr>
-      <th>na.rm</th>
-      <td><p>if <code>TRUE</code> missing values don't count</p></td>
+      <th>op</th>
+      <td><p>A function with a single argument, called often with each
+element of <code>tbls</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>For <code>compare_tbls()</code>: additional parameters passed on the
+<code>compare()</code> function</p>
+<p>For <code>bench_tbls()</code>: additional benchmarks to run.</p></td>
+    </tr>
+    <tr>
+      <th>times</th>
+      <td><p>For benchmarking, the number of times each operation is
+repeated.</p></td>
+    </tr>
+    <tr>
+      <th>ref</th>
+      <td><p>For checking, a data frame to test results against. If not
+supplied, defaults to the results from the first <code>src</code>.</p></td>
+    </tr>
+    <tr>
+      <th>compare</th>
+      <td><p>A function used to compare the results. Defaults to
+<code>equal_data_frame</code> which ignores the order of rows and columns.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fl'>1e5</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] 10</div><div class='input'><span class='fu'>n_distinct</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 10</div></pre>
+    <p><code>eval_tbls()</code>: a list of data frames.</p>
+<p><code>compare_tbls()</code>: an invisible <code>TRUE</code> on success, otherwise
+an error is thrown.</p>
+<p><code>bench_tbls()</code>: an object of class
+<code><a href='https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html'>microbenchmark::microbenchmark()</a></code></p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -80,7 +80,7 @@ to smallest outputs. Use desc() to reverse the direction." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -97,7 +97,7 @@ to smallest outputs. Use desc() to reverse the direction." />
         <a class="navbar-brand" href="../index.html">dplyr</a>
         <div class="info">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.99.9000</span>
+          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.8.99.9002</span>
         </div>
       </div>
     </div>
@@ -242,17 +242,15 @@ rescaling <code>min_rank</code> to <code>[0, 1]</code></p></li>
 <li><p><code>cume_dist()</code>: a cumulative distribution function. Proportion
 of all values less than or equal to the current rank.</p></li>
 <li><p><code>ntile()</code>: a rough rank, which breaks the input vector into
-<code>n</code> buckets.</p></li>
+<code>n</code> buckets. The size of the buckets may differ by up to one,
+larger buckets have lower rank.</p></li>
 </ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>)
 <span class='fu'>row_number</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1]  5  1  4  2  3 NA</div><div class='input'><span class='fu'>min_rank</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1]  5  1  4  2  2 NA</div><div class='input'><span class='fu'>dense_rank</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1]  4  1  3  2  2 NA</div><div class='input'><span class='fu'>percent_rank</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 1.00 0.00 0.75 0.25 0.25   NA</div><div class='input'><span class='fu'>cume_dist</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 1.0 0.2 0.8 0.6 0.6  NA</div><div class='input'>
-<span class='fu'>ntile</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1]  2  1  2  1  1 NA</div><div class='input'><span class='fu'>ntile</span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>100</span>), <span class='fl'>10</span>)</div><div class='output co'>#&gt;   [1]  3  7 10  6 10 10  3  9  2  7  2  1 10  2  9  2  4  1  7  3  6  4  8  2  6
-#&gt;  [26]  5  6  8  4  4  3  5  5 10  3  4  9  1  6  6  8 10  7  7  1  9  2  5  9  7
-#&gt;  [51]  1  3  1 10  6  8 10  6  5  7  3  8  5  1 10  8  9  4  9  1 10  6  4  7  3
-#&gt;  [76]  9  5  2  8  5  5  4  2  4  4  7  3  8  1  6  8  9  9  2  7  3  8  1  2  5</div><div class='input'>
+<span class='fu'>ntile</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1]  2  1  2  1  1 NA</div><div class='input'><span class='fu'>ntile</span>(<span class='fl'>1</span>:<span class='fl'>8</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] 1 1 1 2 2 2 3 3</div><div class='input'>
 <span class='co'># row_number can be used with single table verbs without specifying x</span>
 <span class='co'># (for data frames and databases that support windowing)</span>
 <span class='fu'><a href='mutate.html'>mutate</a></span>(<span class='no'>mtcars</span>, <span class='fu'>row_number</span>() <span class='kw'>==</span> <span class='fl'>1L</span>)</div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
@@ -333,13 +331,9 @@ of all values less than or equal to the current rank.</p></li>
 #&gt; Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
